@@ -1,0 +1,10 @@
+antigen
+autojump
+cmake
+fzf
+git
+htop
+macvim
+tmux
+vim
+zsh
