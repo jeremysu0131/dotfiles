@@ -19,6 +19,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'Yggdroot/indentLine'
+
+Plug 'jiangmiao/auto-pairs'
+
+
 
 call plug#end()
 
@@ -188,8 +193,6 @@ nmap <silent> gd <Plug>(coc-definition)
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-nmap <leader>r :CocCommand python.execInTerminal<CR>
-
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -200,3 +203,10 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" indentline
+let g:indentLine_setColors = 1
+"let g:indentLine_char = '·'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_leadingSpaceChar = '·'

@@ -1,10 +1,23 @@
 antigen
 autojump
 cmake
+composer
 fzf
 git
 htop
-macvim
+node
+php@7.2
+the_silver_searcher
 tmux
 vim
 zsh
+
+# not sure if required
+cscope
+libtermkey
+libuv
+libvterm
+luajit
+mono-libgdiplus
+msgpack
+nginx

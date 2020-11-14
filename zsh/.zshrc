@@ -47,9 +47,6 @@ antigen apply
 alias ls='colorls'
 # alias la='colorls -lA --sd'
 
-# Load pyenv automatically by appending the following to ~/.zshrc:
-eval "$(pyenv init -)"
-
 # Setting node.js
 export PATH="/usr/local/opt/node@12/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/node@12/lib"
@@ -61,6 +58,15 @@ PATH=$PATH:$(ruby -e 'puts Gem.bindir')
 
 # Setting colorls
 source $(dirname $(gem which colorls))/tab_complete.sh
+
+# Set php
+export PATH="/usr/local/opt/php@7.2/bin:$PATH"
+export PATH="/usr/local/opt/php@7.2/sbin:$PATH"
+export LDFLAGS="-L/usr/local/opt/php@7.2/lib"
+export CPPFLAGS="-I/usr/local/opt/php@7.2/include"
+
+# Set fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
