@@ -8,22 +8,11 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-scripts/nginx.vim'
-Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
 Plug 'Yggdroot/indentLine'
-
-Plug 'jiangmiao/auto-pairs'
-
-
 
 call plug#end()
 
@@ -134,14 +123,6 @@ let g:lightline = {
 \ },
 \ }
 
-"Set gitgutter
-set signcolumn=yes
-highlight clear SignColumn
-function! GitStatus()
-  let [a,m,r] = GitGutterGetHunkSummary()
-  return printf('+%d ~%d -%d', a, m, r)
-endfunction
-
 " Set DevIcons
 function! DevIconFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
@@ -152,57 +133,9 @@ function! DevIconFileformat()
 endfunction
 
 " Set NERDTree
-"nmap <leader><leader>n :NERDTreeToggle<CR>
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
-
-"" Set NERDTree Tabs
-let g:nerdtree_tabs_open_on_console_startup=2
-
-
-"Set fzf
-set rtp+=/usr/local/opt/fzf
-map <C-p> :Files<CR>
-map <C-f> :Ag<CR>
-
-"Set Folding
-set foldmethod=indent
-set foldlevelstart=99 "start file with all folds opened
-set encoding=utf-8
-
-" Set Coc
-" Use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-
-" Use <cr> to confirm completion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Close the preview window when completion is done.
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " indentline
 let g:indentLine_setColors = 1

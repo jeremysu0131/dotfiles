@@ -9,15 +9,7 @@ fi
 # Source antigen first
 source /usr/local/share/antigen/antigen.zsh
 
-# This set dircolors
-# Remove the following setting if you want to use this in Linux
-# export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-# export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export TERM="xterm-256color"
-# eval $(gdircolors $HOME/.dir_colors/dircolors.256dark)
-
-# Install Powerlevel9K theme
-# POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -26,10 +18,10 @@ antigen use oh-my-zsh
 antigen bundle autojump
 antigen bundle colored-man-pages
 antigen bundle docker
-# antigen bundle docker-compose
+antigen bundle docker-compose
 antigen bundle git 
-# antigen bundle node 
-# antigen bundle npm
+antigen bundle laravel
+
 antigen bundle sudo
 antigen bundle tmux
 
@@ -47,10 +39,6 @@ antigen apply
 alias ls='colorls'
 # alias la='colorls -lA --sd'
 
-# Setting node.js
-export PATH="/usr/local/opt/node@12/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/node@12/lib"
-export CPPFLAGS="-I/usr/local/opt/node@12/include"
 
 # Setting ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
@@ -59,14 +47,9 @@ PATH=$PATH:$(ruby -e 'puts Gem.bindir')
 # Setting colorls
 source $(dirname $(gem which colorls))/tab_complete.sh
 
-# Set php
-export PATH="/usr/local/opt/php@7.2/bin:$PATH"
-export PATH="/usr/local/opt/php@7.2/sbin:$PATH"
-export LDFLAGS="-L/usr/local/opt/php@7.2/lib"
-export CPPFLAGS="-I/usr/local/opt/php@7.2/include"
-
-# Set fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set PHP
+export PATH=~/.composer/vendor/bin:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
